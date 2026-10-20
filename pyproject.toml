@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools==84.2.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketplace-analytics"
+version = "1.0.0"
+description = "Relatórios de vendas e visualizações do marketplace a partir de eventos Kafka"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi==0.150.0",
+    "uvicorn==0.54.0",
+    "aiokafka==0.14.0",
+    "pandas==3.0.6",
+    "PyJWT==2.15.1",
+    "cryptography==50.0.2",
+    "pydantic-settings==2.16.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "httpx==0.28.1",
+    "ruff==0.17.1",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+extend-exclude = [".venv", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B"]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
